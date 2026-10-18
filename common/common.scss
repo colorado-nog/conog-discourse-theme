@@ -1,0 +1,273 @@
+// CONOG theme. Tokens come from scss/_tokens.scss, generated from conog-site's
+// tokens.css by scripts/sync-tokens.mjs; this file names tokens, never hex values.
+// Section numbers are the Brand Blueprint's.
+
+@import "tokens";
+
+// ------------------------------------------------------------------ type (§6.1, §6.2)
+
+:root {
+  --font-family: #{$font-body};
+  --heading-font-family: #{$font-body};
+  --heading-font-weight: 600;
+  --d-font-family--monospace: #{$font-mono};
+  --line-height-large: #{$body-leading};
+
+  // §8.3: corner radius 0. Badges keep theirs (--d-border-radius-pill).
+  --d-border-radius: 0;
+  --d-border-radius-large: 0;
+  --d-border-radius-fixed: 0;
+  --d-button-border-radius: 0;
+  --d-input-border-radius: 0;
+  --d-nav-pill-border-radius: 0;
+  --d-post-control-border-radius: 0;
+  --d-post-accordion-radius: 0;
+  --full-page-border-radius: 0;
+
+  // §8.3: no shadows. Floating panels get a hairline instead so they still separate.
+  --shadow-card: 0 0 0 1px var(--primary-low);
+  --shadow-dropdown: 0 0 0 1px var(--primary-low);
+  --shadow-menu-panel: 0 0 0 1px var(--primary-low);
+  --shadow-modal: 0 0 0 1px var(--primary-low);
+  --shadow-composer: 0 -1px 0 0 var(--primary-low);
+  --shadow-docked-composer: 0 0 0 1px var(--primary-low);
+  --shadow-footer-nav: 0 -1px 0 0 var(--primary-low);
+  --shadow-header: 0 1px 0 0 var(--primary-low);
+
+  // Chat composer (plugin variables).
+  --d-chat-input-bg-color: var(--secondary);
+  --d-chat-input-border-color: var(--primary-low-mid);
+  --d-chat-input-focused-shadow: 0 0 0 1px var(--tertiary);
+
+  // Buttons (§6.2: Plex Mono 600, uppercase, boxed). Default primary is the Basalt +
+  // Snowfield pairing (§5.3); Locate Orange is reserved for the one action below.
+  --d-button-primary-bg-color: var(--primary);
+  --d-button-primary-text-color: var(--secondary);
+  --d-button-primary-icon-color: var(--secondary);
+  --d-button-primary-bg-color--hover: var(--tertiary);
+  --d-button-primary-text-color--hover: var(--secondary);
+  --d-button-primary-icon-color--hover: var(--secondary);
+}
+
+body {
+  font-size: 1rem; // §6.2 body 16-19px; Appendix A minimum 16px
+  line-height: $body-leading;
+}
+
+.cooked,
+.d-editor-preview {
+  font-size: 1rem;
+  line-height: $body-leading;
+
+  h1 {
+    font-weight: 500;
+    letter-spacing: $h1-tracking;
+    line-height: $h1-leading;
+  }
+
+  h2 {
+    font-weight: 600;
+    letter-spacing: $h2-tracking;
+    line-height: $h2-leading;
+  }
+
+  // Thin Air and Basalt are 2.6:1 apart, so links in running text are underlined too
+  // (WCAG 1.4.1); mentions and hashtags keep their own pill style.
+  :is(p, li, td, blockquote) a:not(.mention, .hashtag-cooked, .mention-group) {
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
+  }
+}
+
+// Topic titles: Barlow 600, sentence case as written.
+.fancy-title,
+#topic-title h1,
+.topic-list .main-link a.title {
+  font-weight: 600;
+}
+
+// Mono labels (§6.2: Plex Mono 500, uppercase, +8%): categories, tags, nav, sidebar headers.
+%conog-label {
+  font-family: $font-mono;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: $label-tracking;
+}
+
+.badge-category__name,
+.discourse-tag,
+.nav-pills > li > a,
+.sidebar-section-header-text,
+.topic-list-header th,
+.topic-list-header th :is(button, span),
+.directory-table__column-header,
+.category-heading,
+.user-main .user-nav a {
+  @extend %conog-label;
+}
+
+.badge-category__name {
+  font-size: 0.8125em;
+}
+
+.discourse-tag {
+  font-size: 0.75rem;
+}
+
+.nav-pills > li > a {
+  font-size: $label-size;
+}
+
+// §6.3: mono carries every number that means something.
+.relative-date,
+.post-count,
+.views,
+.likes,
+.number,
+.topic-list .num,
+.topic-list .activity,
+.badge-notification,
+.post-info .post-date,
+.user-stat .value,
+.chat-time,
+.chat-message-info__date,
+.chat-channel-unread-indicator,
+.topic-map__stat-label,
+.timeline-date-wrapper,
+.timeline-replies {
+  font-family: $font-mono;
+  font-variant-numeric: tabular-nums;
+}
+
+// ------------------------------------------------------------------ buttons
+
+.btn {
+  font-family: $font-mono;
+  font-weight: 600;
+  letter-spacing: $button-tracking;
+  text-transform: uppercase;
+}
+
+.btn .d-button-label {
+  font-size: $button-size;
+}
+
+// The one Locate Orange element per view (§5.1, §8.3, §11.1): orange fill, Basalt text.
+// One selector per view. Page actions are orange only for members (logged out, the header's
+// Sign Up / Log In is the one), Join only on a single group's page (the /g list has one per
+// card), and all of them step back while the composer is open so its submit is the one.
+$conog-orange-on-page: "#create-topic, .topic-footer-main-buttons .btn.create, .group-details-container .group-index-join, .user-preferences .save-changes, .has-full-page-chat .chat-composer-button.-send";
+
+%conog-orange {
+  --d-button-default-bg-color: #{$locate-orange};
+  --d-button-default-bg-color--hover: #{$locate-orange};
+  --d-button-default-text-color: #{$basalt};
+  --d-button-default-text-color--hover: #{$basalt};
+  --d-button-default-icon-color: #{$basalt};
+  --d-button-default-icon-color--hover: #{$basalt};
+  --d-button-primary-bg-color: #{$locate-orange};
+  --d-button-primary-bg-color--hover: #{$locate-orange};
+  --d-button-primary-text-color: #{$basalt};
+  --d-button-primary-text-color--hover: #{$basalt};
+  --d-button-primary-icon-color: #{$basalt};
+  --d-button-primary-icon-color--hover: #{$basalt};
+  background: $locate-orange;
+  color: $basalt;
+  border-color: $locate-orange;
+
+  .d-icon {
+    color: $basalt;
+  }
+
+  &:hover,
+  &:focus-visible {
+    background: $locate-orange;
+    color: $basalt;
+    box-shadow: inset 0 0 0 2px $basalt;
+
+    .d-icon {
+      color: $basalt;
+    }
+  }
+}
+
+html:not(.anon) body:not(:has(#reply-control.open)) {
+  #{$conog-orange-on-page} {
+    @extend %conog-orange;
+  }
+}
+
+#reply-control.open .save-or-cancel .btn-primary,
+.d-header .sign-up-button,
+.d-header .auth-buttons:not(:has(.sign-up-button)) .login-button {
+  @extend %conog-orange;
+}
+
+// ------------------------------------------------------------------ header (§7, §11.1)
+
+.d-header {
+  position: relative;
+  isolation: isolate;
+}
+
+@if $show_topo_texture {
+  // Topo texture behind the header only, Slate at 8% (§8.1 A; §8.3 caps it at 12%).
+  .d-header::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background-color: $slate;
+    opacity: 0.08;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 64' preserveAspectRatio='none'%3E%3Cg fill='none' stroke='black' stroke-width='1.5'%3E%3Cpath d='M0 6C120 2 220 14 340 9S560 0 700 7 930 16 1060 8 1180 4 1200 6'/%3E%3Cpath d='M0 15C140 11 230 24 360 18S580 9 710 16 940 26 1070 17 1180 13 1200 15'/%3E%3Cpath d='M0 24C150 20 240 33 380 27S600 18 720 25 950 36 1080 26 1180 22 1200 24'/%3E%3Cpath stroke-width='2.5' d='M0 33C160 29 250 42 400 36S620 27 730 34 960 46 1090 35 1180 31 1200 33'/%3E%3Cpath d='M0 42C170 38 260 51 420 45S640 36 740 43 970 56 1100 44 1180 40 1200 42'/%3E%3Cpath d='M0 51C180 47 270 60 440 54S660 45 750 52 980 66 1110 53 1180 49 1200 51'/%3E%3Cpath d='M0 60C190 56 280 69 460 63S680 54 760 61 990 76 1120 62 1180 58 1200 60'/%3E%3C/g%3E%3C/svg%3E")
+      0 0 / 100% 100% no-repeat;
+  }
+}
+
+.conog-lockup {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+  color: var(--header_primary);
+  white-space: nowrap;
+}
+
+.conog-lockup__mark {
+  display: block;
+  height: 20px; // §7.2 minimum 18px
+  width: auto;
+}
+
+.conog-lockup__wordmark {
+  font-family: $font-display;
+  font-weight: 700;
+  font-size: 1.75rem;
+  line-height: 1;
+  letter-spacing: $wordmark-tracking;
+  text-transform: uppercase;
+}
+
+.conog-lockup__descriptor {
+  margin-left: 0.25rem;
+  padding-left: 0.75rem;
+  border-left: 1px solid var(--header_primary-low-mid);
+  font-family: $font-mono;
+  font-weight: 500;
+  font-size: 0.75rem; // 12px
+  letter-spacing: $label-tracking;
+  text-transform: uppercase;
+}
+
+.title--minimized {
+  .conog-lockup__wordmark,
+  .conog-lockup__descriptor {
+    display: none;
+  }
+}
+
+@media (max-width: 399px) {
+  .conog-lockup__descriptor {
+    display: none;
+  }
+}

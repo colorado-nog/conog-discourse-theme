@@ -1,0 +1,8 @@
+// Desktop-only adjustments. Shared rules live in common/common.scss.
+
+// The descriptor needs room; on narrow desktop windows the header's own controls win.
+@media (max-width: 900px) {
+  .conog-lockup__descriptor {
+    display: none;
+  }
+}

@@ -1,0 +1,11 @@
+orange_element:
+  type: enum
+  default: primary-button
+  choices:
+    - primary-button
+show_topo_texture:
+  type: bool
+  default: true
+header_descriptor:
+  type: string
+  default: "Colorado's network operator community."

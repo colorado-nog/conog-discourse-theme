@@ -1,0 +1,7 @@
+en:
+  theme_metadata:
+    description: "CONOG brand theme: Basalt and Snowfield, Barlow and IBM Plex Mono, one Locate Orange action per view."
+    settings:
+      orange_element: "The one Locate Orange element per view (Blueprint §8.3). Fixed: the primary action button (New Topic, Reply, the composer's submit, Join on a group, Save in preferences, Sign Up when logged out)."
+      show_topo_texture: "Faint topographic contours behind the header only, Slate at 8% (Blueprint §8.1 A, §8.3). Never behind body text."
+      header_descriptor: "Mono descriptor next to the wordmark (Blueprint §7.1). Hidden on screens narrower than 400px. Leave empty to hide it everywhere."
