@@ -238,6 +238,16 @@ html:not(.anon) body:not(:has(#reply-control.open)) {
   }
 }
 
+// Chat's mobile header (back to Forum, "Chat") is drawn in page text colour, which is
+// invisible on the Basalt header in CONOG Light.
+.d-header .c-header {
+  :is(.back-to-forum, .c-heading),
+  :is(.back-to-forum, .c-heading):hover,
+  .back-to-forum .d-icon {
+    color: var(--header_primary);
+  }
+}
+
 .conog-lockup {
   display: inline-flex;
   align-items: center;
