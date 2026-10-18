@@ -68,7 +68,7 @@ Locate Orange appears once per view, as a fill with Basalt text (Blueprint §5.1
 | Composer open | the composer's submit (Create Topic / Reply); page buttons step back |
 | A group (`/g/<name>`) | Join |
 | Preferences | Save Changes |
-| Full-page chat | Send |
+| Full-page chat | Send, once there is text to send |
 | Logged out | Sign Up, or Log In while the forum is invite-only |
 
 Every other primary button is boxed Basalt on Snowfield (Snowfield on Basalt in dark).

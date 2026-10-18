@@ -49,6 +49,12 @@
   --d-button-primary-icon-color--hover: var(--secondary);
 }
 
+// The admin sidebar marks the active link with a Thin Air tint; secondary text on it is
+// 4.3:1 in dark, so the active link uses full text colour there.
+.admin-area .sidebar-wrapper .admin-panel {
+  --d-sidebar-active-color: var(--primary);
+}
+
 body {
   font-size: 1rem; // §6.2 body 16-19px; Appendix A minimum 16px
   line-height: $body-leading;
@@ -156,7 +162,7 @@ body {
 // One selector per view. Page actions are orange only for members (logged out, the header's
 // Sign Up / Log In is the one), Join only on a single group's page (the /g list has one per
 // card), and all of them step back while the composer is open so its submit is the one.
-$conog-orange-on-page: "#create-topic, .topic-footer-main-buttons .btn.create, .group-details-container .group-index-join, .user-preferences .save-changes, .has-full-page-chat .chat-composer-button.-send";
+$conog-orange-on-page: "#create-topic, .topic-footer-main-buttons .btn.create, .group-details-container .group-index-join, .user-preferences .save-changes, .full-page-chat .chat-composer.is-send-enabled .chat-composer-button.-send";
 
 %conog-orange {
   --d-button-default-bg-color: #{$locate-orange};
@@ -174,6 +180,7 @@ $conog-orange-on-page: "#create-topic, .topic-footer-main-buttons .btn.create, .
   background: $locate-orange;
   color: $basalt;
   border-color: $locate-orange;
+  border-radius: 0; // chat's Send is round by default
 
   .d-icon {
     color: $basalt;
