@@ -85,6 +85,12 @@ body {
   }
 }
 
+// The same for the links in "Browse all categories or view latest topics" under a topic.
+.more-topics__browse-more a {
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
 // Topic titles: Barlow 600, sentence case as written.
 .fancy-title,
 #topic-title h1,
