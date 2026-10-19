@@ -90,7 +90,8 @@ Unread counts, notification dots, category colours, likes and links never use or
   pixel); replace `MARK_PATH` in `scripts/sync-tokens.mjs` when final vectors exist.
 - Dark mode follows the OS: the theme's dark palette is CONOG Dark.
 
-The full list, with Blueprint sections, is in `conog-infra/docs/decisions.md` (Phase 6).
+The full list, with Blueprint sections, is in `conog-infra/docs/decisions.md`, decisions
+60–74.
 
 ## Layout
 
